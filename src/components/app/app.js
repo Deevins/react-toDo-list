@@ -8,15 +8,15 @@ import PostAddForm from '../post-add-form';
 
 import './app.css';
 
-
-
-
 export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			 data: [
+			 data: [5,
+				 7,
+				 '',
+				 false,
 				  {label: 'Going to learn React', important: false, like: false, id: 1},
 				  {label: 'That is so good', important: false, like: false, id: 2},
 				  {label: 'I need a break...', important: false, like: false, id: 3}
@@ -24,6 +24,9 @@ export default class App extends React.Component {
 			 term:'',
 			 filter: 'all'
 		};
+		//todo: refactor onToggleImportant and onToggleLike
+        // todo: Create unique id for posts
+
 		this.deleteItem = this.deleteItem.bind(this);
 		this.addItem = this.addItem.bind(this);
 		this.onToggleImportant = this.onToggleImportant.bind(this);
@@ -32,13 +35,6 @@ export default class App extends React.Component {
 		this.onFilterSelect = this.onFilterSelect.bind(this);		
 		this.maxId = 4;
 	}
-	
-	//    isValid(mas) {
-		// 	return typeof mas === 'object' && mas !== null;
-// }
-
-// 	pureData = this.state.data.filter(this.isValid);
-
 
 
 	deleteItem(id) {
@@ -130,9 +126,9 @@ export default class App extends React.Component {
 		const {data,term,filter} = this.state;
 
 		const liked = data.filter(item => item.like).length;
-		const allPosts = data.length;
+		const allPosts = data.filter(el=>el.label).length;
 		
-		const visiblePosts = this.filterPosts(this.searchPost(data,term),filter);
+		const visiblePosts = (this.filterPosts(this.searchPost(data,term),filter)).filter(el => el.label);
 
 		return (
 			<div className='app'>

@@ -19,11 +19,10 @@ export default class SearchPanel extends React.Component {
 	render() {
 		return (
 			<input
-							className='form-control search-input'
-							type='text'
-							placeholder='Поиск по записям'
-							onChange={this.onUpdateSearch}
-			/>
+				className='form-control search-input'
+				type='text'
+				placeholder='Поиск по записям'
+				onChange={this.onUpdateSearch}/>
 			)
 		}
 
